@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #222;
+  --secondary-color: #f7f7f7;
+}
+
 body {
   background-color: rgb(228, 186, 138);
 }
@@ -5,30 +10,34 @@ body {
 .container {
   padding: 30px 50px 10px 50px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(247, 247, 247, 0.4);
   font-family: "Montserrat", sans-serif;
-  color: #222;
+  color: var(--primary-color);
   width: 60%;
-  margin: 2em auto;
+  margin: 4em auto;
   margin-bottom: 0;
   backdrop-filter: blur(33px);
-  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 30px rgba(34, 34, 34, 0.302);
   /*backdrop-filter: brightness(60%);*/
 }
 
+input, button {
+  border: 0;
+  opacity: 0.8;
+}
 
 h1 {
   font-weight: 500;
   font-size: 3em;
   line-height: 0.75;
-  color: #272044;
+  color: var(--primary-color);
   margin: 10px 0 0;
 }
 
 h2 {
   font-size: 1.5em;
   font-weight: 500;
-  color: #272044;
+  color: var(--primary-color);
   margin: 10px 0 0;
 }
 .current-emoji {
@@ -55,7 +64,7 @@ footer {
 
 a {
   text-decoration: none;
-  color: #222;
+  color: var(--primary-color);
   font-weight: bold;
 }
 
