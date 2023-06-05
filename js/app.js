@@ -24,7 +24,7 @@ function displayWeatherCondition(response) {
 
 function searchCity(city) {
   var tempUnit = "metric";
-  var apiKey = "2513f3c728b1b5ff4f4347e1a6af22b8";
+  let apiKey = "2513f3c728b1b5ff4f4347e1a6af22b8";
   var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${tempUnit}`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
@@ -35,12 +35,40 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
+function searchLocation(position) {
+  var tempUnit = "metric";
+  let apiKey = "2513f3c728b1b5ff4f4347e1a6af22b8";
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${tempUnit}`;
+
+  axios.get(apiUrl).then(displayWeatherCondition);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = 66;
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = 19;
+}
+
 var dateElement = document.querySelector("#date");
 var currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 
 var searchForm = document.querySelector("form");
 searchForm.addEventListener("submit", handleSubmit);
+
+var locationButton = document.querySelector("#current-location-button");
+locationButton.addEventListener("click", getCurrentLocation);
 
 searchCity("London"); //initial display
 
