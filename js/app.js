@@ -25,9 +25,25 @@ function displayWeatherCondition(response) {
   iconElement.setAttribute("alt", response.data.condition.icon);
 }
 
+function convertTemperatureUnit() {
+  unitElement = document.getElementById('temp-unit-button').innerText;
+  if (unitElement === '°C') {
+    document.getElementById('temp-unit').innerText = '°C';
+    document.getElementById('temp-unit-button').innerText = '°F';
+    var tempUnit = "metric";
+  } else if (unitElement === '°F') {
+    document.getElementById('temp-unit').innerText = '°F';
+    document.getElementById('temp-unit-button').innerText = '°C';
+    var tempUnit = "imperial";
+  }
+  var sameCity = document.getElementById('current-city').innerText;
+  var apiUrl = `https://api.shecodes.io/weather/v1/current?query=${sameCity}&key=${apiKey}&units=${tempUnit}`;
+  axios.get(apiUrl).then(displayWeatherCondition);
+}
+
 
 function searchCity(city) {
-  var apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${tempUnit}`;
+  var apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -38,7 +54,7 @@ function handleSubmit(event) {
 }
 
 function searchLocation(position) {
-  var apiUrl =  `https://api.shecodes.io/weather/v1/current?lon=${position.coords.longitude}&lat=${position.coords.latitude}&key=${apiKey}&units=${tempUnit}`
+  var apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${position.coords.longitude}&lat=${position.coords.latitude}&key=${apiKey}&units=metric`
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -47,19 +63,6 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 66;
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 19;
-}
-
-var tempUnit = "metric";
 let apiKey = "45t979b41003aof20ffaaa7143e5db63";
 
 var dateElement = document.querySelector("#date");
@@ -72,5 +75,10 @@ searchForm.addEventListener("submit", handleSubmit);
 var locationButton = document.querySelector("#current-location-button");
 locationButton.addEventListener("click", getCurrentLocation);
 
+
 searchCity("London"); //initial display
+
+var unitButton = document.querySelector("#temp-unit-button");
+unitButton.addEventListener("click", convertTemperatureUnit);
+
 
