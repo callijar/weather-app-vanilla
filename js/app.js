@@ -20,7 +20,11 @@ function displayWeatherCondition(response) {
   document.querySelector("#current-feel").innerHTML = Math.round(response.data.temperature.feels_like);
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
+  var iconElement = document.querySelector("#current-emoji");
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+  iconElement.setAttribute("alt", response.data.condition.icon);
 }
+
 
 function searchCity(city) {
   var apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${tempUnit}`;
