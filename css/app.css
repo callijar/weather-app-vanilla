@@ -7,20 +7,6 @@ body {
   background-color: rgb(228, 186, 138);
 }
 
-.container {
-  padding: 30px 50px 10px 50px;
-  border-radius: 10px;
-  background: rgba(247, 247, 247, 0.4);
-  font-family: "Montserrat", sans-serif;
-  color: var(--primary-color);
-  width: 60%;
-  margin: 4em auto;
-  margin-bottom: 0;
-  backdrop-filter: blur(33px);
-  box-shadow: 5px 5px 30px rgba(34, 34, 34, 0.302);
-  /*backdrop-filter: brightness(60%);*/
-}
-
 input, button {
   border: 0;
   opacity: 0.8;
@@ -40,6 +26,21 @@ h2 {
   color: var(--primary-color);
   margin: 10px 0 0;
 }
+
+.container {
+  padding: 30px 50px 10px 50px;
+  border-radius: 10px;
+  background: rgba(247, 247, 247, 0.4);
+  font-family: "Montserrat", sans-serif;
+  color: var(--primary-color);
+  max-width: 50em;
+  margin: 4em auto;
+  margin-bottom: 0;
+  backdrop-filter: blur(33px);
+  box-shadow: 5px 5px 30px rgba(34, 34, 34, 0.302);
+  /*backdrop-filter: brightness(60%);*/
+}
+
 .current-emoji {
   font-size: 3em;
 }
@@ -48,6 +49,10 @@ h2 {
   font-weight: 800;
   font-size: 4em;
   line-height: 0.75;
+}
+
+#temp-unit {
+  font-size: 1em;
 }
 
 .image-credit {

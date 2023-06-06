@@ -15,17 +15,15 @@ function formatDate(date) {
 }
 
 function displayWeatherCondition(response) {
-  document.querySelector("#current-city").innerHTML = response.data.name;
-  document.querySelector("#description").innerHTML = response.data.weather[0].main;
-  document.querySelector("#current-feel").innerHTML = Math.round(response.data.main.feels_like);
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#current-city").innerHTML = response.data.city;
+  document.querySelector("#description").innerHTML = response.data.condition.description;
+  document.querySelector("#current-feel").innerHTML = Math.round(response.data.temperature.feels_like);
+  document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
 }
 
 function searchCity(city) {
-  var tempUnit = "metric";
-  let apiKey = "2513f3c728b1b5ff4f4347e1a6af22b8";
-  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${tempUnit}`;
+  var apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${tempUnit}`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -36,10 +34,7 @@ function handleSubmit(event) {
 }
 
 function searchLocation(position) {
-  var tempUnit = "metric";
-  let apiKey = "2513f3c728b1b5ff4f4347e1a6af22b8";
-  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${tempUnit}`;
-
+  var apiUrl =  `https://api.shecodes.io/weather/v1/current?lon=${position.coords.longitude}&lat=${position.coords.latitude}&key=${apiKey}&units=${tempUnit}`
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -59,6 +54,9 @@ function convertToCelsius(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = 19;
 }
+
+var tempUnit = "metric";
+let apiKey = "45t979b41003aof20ffaaa7143e5db63";
 
 var dateElement = document.querySelector("#date");
 var currentTime = new Date();

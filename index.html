@@ -24,8 +24,8 @@
       referrerpolicy="no-referrer"
     />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <title>Weather App</title>
     <link rel="stylesheet" href="css/app.css" />
+    <title>Weather App</title>
   </head>
   <body>
     <div class="container">
@@ -35,7 +35,7 @@
             <div class="input-group mb-3">
               <input
                 type="text"
-                class="form-control input-group-text"
+                class="form-control"
                 id="city-input"
                 placeholder="Enter city name"
                 autofocus="on"
@@ -73,14 +73,12 @@
           <div class="row align-items-top text-left">
             <div class="col-md-auto current-emoji">🌤️</div>
             <div class="col-md-auto real-feel">
-              <div id="current-feel">12</div>
+              <span id="current-feel">12</span><span class="align-top" id="temp-unit"><strong>°C</strong></span>
+              <br>
               RealFeel
             </div>
-            <div class="col-md-auto temp-option">
-              <a href="#" id="temp-unit" class="active">°C</a>
-            </div>
             <div class="col-md-auto weather-info">
-              Humidity: <span id="humidity"> 58</span> %
+              Humidity: <span id="humidity">58</span>%
               <br />
               Wind: <span id="wind">26</span> m/s
             </div>
