@@ -9,6 +9,6 @@ This project is coded for SheCodes Plus workshop.
 
 
 ## Credits
-*background videos are by the fabulous [coverr](https://coverr.co/).
+* background videos are by the fabulous [coverr](https://coverr.co/).
 
-*quote images are by the amazing [shopcraftables](https://shopcraftables.com/collections/free-svg-cut-files).
+* quote images are by the amazing [shopcraftables](https://shopcraftables.com/collections/free-svg-cut-files).
