@@ -1,4 +1,4 @@
-//set current date
+//set current date and background
 function formatDate(date) {
   var hours = date.getHours();
   if (hours < 10) {
@@ -9,9 +9,35 @@ function formatDate(date) {
       minutes = `0${minutes}`;
   }
   var day = date.getDay();
-  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   var today = days[day];
+  var month = date.getMonth();
+
+  let seasons = ["spring", "summer", "autumn", "winter"];
+  if (month === 2||month === 3||month === 4) {
+    var season = seasons[0];
+  } else if (month === 5||month === 6||month === 7) {
+    var season = seasons[1];
+  } else if (month === 8||month === 9||month === 10) {
+    var season = seasons[2];
+  } else if (month === 11||month === 0||month === 1) {
+    var season = seasons[3];
+  }
+
+  var videoElement = document.querySelector("#background-video");
+  videoElement.setAttribute("src", `media/videos/${season}.mp4`);
+  videoElement.setAttribute("alt", season);
+
   return `${today} ${hours}:${minutes}`;
+}
+
+function randomQuote() {
+  var quoteNumber = Math.floor(Math.random() * 17);
+  let quoteNameList = ["breathe", "change", "chill", "coffee", "explore", "fearless", "feather", "hike", "print1", "print2", "smile", "stars", "strong", "sunflower", "tea", "thanks", "today", "write"];
+  var quote = quoteNameList[quoteNumber];
+  var quoteElement = document.querySelector("#quote-img");
+  quoteElement.setAttribute("src", `media/images/${quote}.svg`);
+  quoteElement.setAttribute("alt", quote);
 }
 
 function displayWeatherCondition(response) {
@@ -63,6 +89,7 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+
 let apiKey = "45t979b41003aof20ffaaa7143e5db63";
 
 var dateElement = document.querySelector("#date");
@@ -75,8 +102,8 @@ searchForm.addEventListener("submit", handleSubmit);
 var locationButton = document.querySelector("#current-location-button");
 locationButton.addEventListener("click", getCurrentLocation);
 
-
-searchCity("London"); //initial display
+randomQuote();
+searchCity("Mashhad"); //initial display
 
 var unitButton = document.querySelector("#temp-unit-button");
 unitButton.addEventListener("click", convertTemperatureUnit);

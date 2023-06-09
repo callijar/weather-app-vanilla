@@ -7,6 +7,17 @@ body {
   background-color: rgb(228, 186, 138);
 }
 
+video {
+  object-fit: cover;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: opacity 600ms ease-out;
+}
+
 .container {
   padding: 30px 50px 10px 50px;
   border-radius: 10px;
@@ -16,7 +27,7 @@ body {
   max-width: 50em;
   margin: 4em auto;
   margin-bottom: 0;
-  backdrop-filter: blur(33px);
+  backdrop-filter: blur(20px);
   box-shadow: 5px 5px 30px rgba(34, 34, 34, 0.302);
   /*backdrop-filter: brightness(60%);*/
 }
@@ -47,6 +58,17 @@ h2 {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+}
+
+.quote-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.quote {
+  max-height: 200px;
 }
 
 #current-feel {
