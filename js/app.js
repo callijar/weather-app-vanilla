@@ -1,5 +1,6 @@
 //set current date and background
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   var hours = date.getHours();
   if (hours < 10) {
       hours = `0${hours}`;
@@ -40,6 +41,52 @@ function randomQuote() {
   quoteElement.setAttribute("alt", quote);
 }
 
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col">
+        <div class="weather-forecast-date">${formatDay(forecastDay.time)}</div>
+        <img
+          src= ${forecastDay.condition.icon_url}
+          alt=""
+          width="60"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> <strong> ${Math.round(forecastDay.temperature.maximum)}° </strong> </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(forecastDay.temperature.minimum)}° </span>
+        </div>
+      </div>
+  `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+
 function displayWeatherCondition(response) {
   document.querySelector("#current-city").innerHTML = response.data.city;
   document.querySelector("#description").innerHTML = response.data.condition.description;
@@ -49,6 +96,10 @@ function displayWeatherCondition(response) {
   var iconElement = document.querySelector("#current-emoji");
   iconElement.setAttribute("src", response.data.condition.icon_url);
   iconElement.setAttribute("alt", response.data.condition.icon);
+
+  getForecast(response.data.coordinates);
+
+   
 }
 
 function convertTemperatureUnit() {
@@ -66,7 +117,6 @@ function convertTemperatureUnit() {
   var apiUrl = `https://api.shecodes.io/weather/v1/current?query=${sameCity}&key=${apiKey}&units=${tempUnit}`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
-
 
 function searchCity(city) {
   var apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;

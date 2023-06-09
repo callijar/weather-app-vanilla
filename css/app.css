@@ -32,6 +32,10 @@ video {
   /*backdrop-filter: brightness(60%);*/
 }
 
+form {
+  margin-bottom: 1em;
+}
+
 input,
 button {
   border: 0;
@@ -83,6 +87,13 @@ h2 {
 
 .image-credit {
   font-size: xx-small;
+  opacity: 0.5;
+}
+
+.weather-forecast {
+  margin-top: 2em;
+  margin-bottom: 1.5em;
+  text-align: center;
 }
 
 footer {
