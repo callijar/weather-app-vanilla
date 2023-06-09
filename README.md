@@ -5,7 +5,7 @@ This project is coded for SheCodes Plus workshop.
 ## Features
 * weather search by city name
 * current real-feel and weather description icon
-* 5day weather forecast
+* 5-day weather forecast
 * temperature conversion button (°C <-> °F)
 * quote
 
