@@ -4,9 +4,13 @@ This project is coded for SheCodes Plus workshop.
 
 ## Features
 * weather search by city name
-* shows current real-feel and weather description icon
+* current real-feel and weather description icon
+* 5day weather forecast
+* temperature conversion button (°C <-> °F)
+* quote
 
-
+## Notes
+day and time under city name are based on user's location
 
 ## Credits
 * background videos are by the fabulous [coverr](https://coverr.co/).
