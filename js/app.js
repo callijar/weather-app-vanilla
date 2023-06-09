@@ -102,7 +102,8 @@ function displayWeatherCondition(response) {
    
 }
 
-function convertTemperatureUnit() {
+function convertTemperatureUnit(event) {
+  event.preventDefault();
   unitElement = document.getElementById('temp-unit-button').innerText;
   let allTemps = document.querySelectorAll(".tempUnit");
   if (unitElement === '°C') {
