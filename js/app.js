@@ -69,8 +69,8 @@ function displayForecast(response) {
           width="60"
         />
         <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temperature-max"> <strong> ${Math.round(forecastDay.temperature.maximum)}° </strong> </span>
-          <span class="weather-forecast-temperature-min"> ${Math.round(forecastDay.temperature.minimum)}° </span>
+          <span class="forecast-temperature-max tempUnit"> ${Math.round(forecastDay.temperature.maximum)}</span>° 
+          <span class="forecast-temperature-min tempUnit"> ${Math.round(forecastDay.temperature.minimum)}</span>° 
         </div>
       </div>
   `;
@@ -104,18 +104,24 @@ function displayWeatherCondition(response) {
 
 function convertTemperatureUnit() {
   unitElement = document.getElementById('temp-unit-button').innerText;
+  let allTemps = document.querySelectorAll(".tempUnit");
   if (unitElement === '°C') {
     document.getElementById('temp-unit').innerText = '°C';
     document.getElementById('temp-unit-button').innerText = '°F';
-    var tempUnit = "metric";
+    allTemps.forEach(function (temp) {
+      temp.innerHTML = Math.round(
+        (parseInt(temp.innerHTML, 10) - 32) / 1.8
+      );
+    });
+
   } else if (unitElement === '°F') {
     document.getElementById('temp-unit').innerText = '°F';
     document.getElementById('temp-unit-button').innerText = '°C';
-    var tempUnit = "imperial";
+    let allTemps = document.querySelectorAll(".tempUnit");
+    allTemps.forEach(function (temp) {
+      temp.innerHTML = Math.round(parseInt(temp.innerHTML, 10) * 1.8 + 32);
+    });
   }
-  var sameCity = document.getElementById('current-city').innerText;
-  var apiUrl = `https://api.shecodes.io/weather/v1/current?query=${sameCity}&key=${apiKey}&units=${tempUnit}`;
-  axios.get(apiUrl).then(displayWeatherCondition);
 }
 
 function searchCity(city) {
