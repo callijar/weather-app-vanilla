@@ -10,7 +10,8 @@ This project is coded for SheCodes Plus workshop.
 * quote
 
 ## Notes
-day and time under city name are based on user's location
+* day and time under city name are based on user's location
+* sesaonal background is currently only sccurate in the Northern hemisphere
 
 ## Credits
 * background videos are by the fabulous [coverr](https://coverr.co/).
