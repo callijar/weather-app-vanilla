@@ -25,7 +25,7 @@ video {
   font-family: "Montserrat", sans-serif;
   color: var(--primary-color);
   max-width: 50em;
-  margin: 4em auto;
+  margin: 0.25em auto;
   margin-bottom: 0;
   backdrop-filter: blur(20px);
   box-shadow: 5px 5px 30px rgba(34, 34, 34, 0.302);
